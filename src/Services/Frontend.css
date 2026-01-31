@@ -1,0 +1,280 @@
+:root {
+    --primary: #ff6b6b;
+
+    --bg-main: linear-gradient(135deg,
+            #fff5f5 0%,
+            #fff1f2 35%,
+            #fdf2f8 70%,
+            #ffffff 100%);
+
+    --bg-card: #ffffff;
+
+    --text-main: #2d405b;
+    --text-muted: #6b7280;
+
+    --shadow-soft: 0 8px 20px rgba(255, 107, 107, 0.15);
+    --shadow-strong: 0 20px 40px rgba(255, 107, 107, 0.25);
+}
+
+/* =========================
+   SERVICE DETAIL SECTION
+========================= */
+.service-detail {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: clamp(4rem, 8vw, 7rem) clamp(2rem, 6vw, 5rem);
+
+    background: var(--bg-main);
+
+
+    box-shadow: var(--shadow-soft);
+}
+
+/* =========================
+   MAIN HEADING
+========================= */
+.service-detail h1 {
+    font-size: clamp(3.2rem, 4vw, 4.2rem);
+    text-align: center;
+    margin-bottom: 2.5rem;
+
+    color: var(--text-main);
+    position: relative;
+}
+
+.service-detail h1::after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 4px;
+    margin: 1.2rem auto 0;
+
+    background: linear-gradient(90deg,
+            transparent,
+            var(--primary),
+            transparent);
+    border-radius: 2px;
+}
+
+/* =========================
+   INTRO PARAGRAPH
+========================= */
+.service-detail p {
+    font-size: 1.55rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+
+    max-width: 100%;
+    margin: 0 auto 3.5rem;
+    text-align: justify;
+}
+
+.service-detail h3 {
+    font-size: 1.9rem;
+    margin: 3.5rem 0 1.6rem;
+    padding-left: 1.4rem;
+
+    color: var(--text-main);
+    border-left: 4px solid var(--primary);
+}
+
+/* =========================
+   LIST STYLES (DIAMOND BULLETS)
+========================= */
+.service-detail ul {
+    list-style: none;
+    padding: 2.4rem 2.8rem;
+    margin-bottom: 2.5rem;
+
+    background: #ffffff;
+    border-radius: 1.8rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.service-detail li {
+    position: relative;
+    padding-left: 2.8rem;
+
+    font-size: 1.45rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+
+/* SMALLER DIAMOND BULLET */
+.service-detail li::before {
+    content: "";
+    position: absolute;
+    left: 0.2rem;
+    top: 0.8em;
+
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    transform: rotate(45deg);
+}
+
+/* =========================
+   CTA BUTTON (UNCHANGED)
+========================= */
+.service-detail .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 4rem auto 0;
+    padding: 1.4rem 3.4rem;
+
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.14rem;
+
+    color: var(--primary);
+    background: transparent;
+
+    border: 2px solid var(--primary);
+    border-radius: 4rem;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    position: relative;
+    overflow: hidden;
+
+    transition:
+        transform 0.35s cubic-bezier(.22, 1, .36, 1),
+        box-shadow 0.35s ease;
+}
+
+/* FAST SWEEP */
+.service-detail .btn::after {
+    content: "";
+    position: absolute;
+    inset: -10%;
+    background: linear-gradient(120deg,
+            transparent 35%,
+            rgba(255, 107, 107, 0.75),
+            transparent 65%);
+    transform: translateX(-140%);
+}
+
+/* SLOW GLOW */
+.service-detail .btn::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(circle,
+            rgba(255, 107, 107, 0.35),
+            transparent 60%);
+    transform: translateX(-160%);
+    opacity: 0;
+}
+
+/* HOVER */
+.service-detail .btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(255, 107, 107, 0.35);
+}
+
+.service-detail .btn:hover::after {
+    animation: sweepFast 0.9s ease forwards;
+}
+
+.service-detail .btn:hover::before {
+    animation: sweepSlow 1.6s ease forwards;
+    opacity: 1;
+}
+
+/* =========================
+   KEYFRAMES
+========================= */
+@keyframes sweepFast {
+    from {
+        transform: translateX(-140%);
+    }
+
+    to {
+        transform: translateX(140%);
+    }
+}
+
+@keyframes sweepSlow {
+    from {
+        transform: translateX(-160%);
+    }
+
+    to {
+        transform: translateX(160%);
+        -webkit-transform: translateX(160%);
+        -moz-transform: translateX(160%);
+        -ms-transform: translateX(160%);
+        -o-transform: translateX(160%);
+    }
+}
+
+@media (max-width: 768px) and (hover: none) {
+    .service-detail {
+        padding: 3rem 1.8rem 4rem;
+        scroll-margin-top: 6.5rem;
+        box-shadow: none;
+    }
+
+    .service-detail h1 {
+        font-size: clamp(2.4rem, 6vw, 3rem);
+        margin-top: 0;
+        margin-bottom: 2rem;
+    }
+
+    .service-detail h1::after {
+        width: 60px;
+        height: 3px;
+    }
+
+    .service-detail p {
+        font-size: 1.4rem;
+        line-height: 1.7;
+        text-align: justify;
+        margin-bottom: 3rem;
+    }
+
+    .service-detail h3 {
+        font-size: 1.7rem;
+        margin: 2.5rem 0 1.4rem;
+        padding-left: 1.2rem;
+    }
+
+    .service-detail ul {
+        padding: 2rem 1.8rem;
+        border-radius: 1.4rem;
+        gap: 1rem;
+    }
+
+    .service-detail li {
+        font-size: 1.35rem;
+        padding-left: 2.4rem;
+    }
+
+    .service-detail li::before {
+        width: 5px;
+        height: 5px;
+        top: 0.75em;
+    }
+
+    .service-detail .btn {
+        width: 100%;
+        padding: 1.2rem 2.4rem;
+        font-size: 1.25rem;
+        letter-spacing: 0.1rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: none;
+    }
+
+    .service-detail .btn::before,
+    .service-detail .btn::after {
+        display: none;
+    }
+}

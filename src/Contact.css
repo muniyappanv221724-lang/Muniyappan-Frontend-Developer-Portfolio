@@ -1,0 +1,433 @@
+/* =========================================================
+   CONTACT — ADVANCED V3 SYSTEM
+========================================================= */
+.contact {
+    --primary: #ff6b6b;
+    --secondary: #6366f1;
+    --accent: #00cec9;
+    --glass: rgba(255, 255, 255, 0.38);
+    --border-glow: rgba(255, 107, 107, 0.45);
+
+    position: relative;
+    padding: 10rem 8%;
+    background: linear-gradient(135deg, #f8fafc, #eef2ff);
+    overflow: hidden;
+    perspective: 1200px;
+}
+
+/* =========================================================
+   BACKGROUND ENGINE (MULTI-LAYER GPU SAFE)
+========================================================= */
+.contact-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* animated glow cloud */
+.contact-bg::before {
+    content: "";
+    position: absolute;
+    inset: -45%;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255, 107, 107, .35), transparent 60%),
+        radial-gradient(circle at 80% 70%, rgba(99, 102, 241, .35), transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(0, 206, 201, .25), transparent 65%);
+    filter: blur(80px);
+    animation: glowFloat 32s cubic-bezier(.22, .61, .36, 1) infinite;
+    transform-origin: center;
+}
+
+/* animated grid */
+.contact-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(45deg, rgba(0, 0, 0, .025) 1px, transparent 1px),
+        linear-gradient(-45deg, rgba(0, 0, 0, .025) 1px, transparent 1px);
+    background-size: 44px 44px;
+    animation: gridDrift 46s linear infinite;
+    opacity: .55;
+}
+
+.contact>* {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================================================
+   PARTICLES — DEPTH AWARE
+========================================================= */
+.contact-particles span {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    opacity: .45;
+    animation: particleLift linear infinite;
+    transform: translateZ(0);
+}
+
+.contact-particles span:nth-child(1) {
+    top: 12%;
+    left: 18%;
+    animation-duration: 20s;
+}
+
+.contact-particles span:nth-child(2) {
+    top: 55%;
+    left: 78%;
+    animation-duration: 28s;
+}
+
+.contact-particles span:nth-child(3) {
+    top: 75%;
+    left: 22%;
+    animation-duration: 24s;
+}
+
+.contact-particles span:nth-child(4) {
+    top: 88%;
+    left: 60%;
+    animation-duration: 32s;
+}
+
+.contact-particles span:nth-child(5) {
+    top: 32%;
+    left: 48%;
+    animation-duration: 26s;
+}
+
+/* =========================================================
+   HEADING — PREMIUM GRADIENT TEXT
+========================================================= */
+.contact .heading {
+    text-align: center;
+    font-size: clamp(3.8rem, 4vw, 4.6rem);
+    margin-bottom: 5rem;
+    font-weight: 800;
+}
+
+.contact .heading span {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* =========================================================
+   CONTAINER — DEPTH GRID
+========================================================= */
+.contact-container {
+    max-width: 1150px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 4rem;
+}
+
+/* =========================================================
+   INFO CARDS — DEPTH + MAGNETIC HOVER
+========================================================= */
+.contact-info {
+    display: grid;
+    gap: 2rem;
+}
+
+.info-card {
+    background: var(--glass);
+    border-radius: 1.8rem;
+    padding: 2.6rem;
+    border: 1px solid rgba(255, 255, 255, .45);
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, .4),
+        0 6px 18px rgba(255, 107, 107, 0.18);
+
+    text-align: center;
+    transform-style: preserve-3d;
+    transition:
+        transform .6s cubic-bezier(.22, .61, .36, 1),
+        box-shadow .6s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-14px) rotateX(6deg) scale(1.03);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, .45),
+        0 14px 32px rgba(255, 107, 107, 0.28);
+}
+
+.info-card i {
+    font-size: 2.8rem;
+    color: var(--primary);
+    margin-bottom: 1.2rem;
+}
+
+.info-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-main);
+}
+
+.info-card p {
+    font-size: 1.4rem;
+    color: #6b7280;
+}
+
+.info-card a {
+    font-size: 1.4rem;
+    color: #6b7280;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   FORM — FLOATING + INNER GLOW
+========================================================= */
+.contact-form {
+    background: var(--glass);
+    backdrop-filter: blur(22px);
+    border-radius: 2.2rem;
+    padding: 3.4rem;
+    border: 1px solid rgba(255, 255, 255, .45);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, .18);
+}
+
+.field {
+    position: relative;
+    margin-bottom: 2.6rem;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    padding: 1.5rem 1.3rem;
+    font-size: 1.55rem;
+    background: transparent;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(0, 0, 0, .15);
+    outline: none;
+    transition:
+        border .3s ease,
+        box-shadow .3s ease;
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: var(--primary);
+    box-shadow:
+        0 0 0 3px rgba(255, 107, 107, .25),
+        inset 0 0 0 1px rgba(255, 255, 255, .4);
+}
+
+.field label {
+    position: absolute;
+    left: 1.2rem;
+    top: -.9rem;
+    padding: 0 .6rem;
+    font-size: 1.15rem;
+    background: #f8fafc;
+    color: var(--primary);
+}
+
+/* =========================================================
+   BUTTON — ENERGY SWEEP
+========================================================= */
+.btn-submit {
+    position: relative;
+    width: 100%;
+    padding: 1.4rem;
+    border-radius: 3.2rem;
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    box-shadow: 0 25px 55px rgba(255, 107, 107, .45);
+    overflow: hidden;
+
+    transition: transform .35s ease;
+}
+
+.btn-submit::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg,
+            transparent,
+            rgba(255, 255, 255, .45),
+            transparent);
+    transform: translateX(-120%);
+    transition: transform .7s ease;
+}
+
+.btn-submit:hover::after {
+    transform: translateX(120%);
+}
+
+.btn-submit:hover {
+    transform: translateY(-4px);
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+@keyframes glowFloat {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: .6;
+    }
+
+    50% {
+        transform: translate(-6%, 5%) scale(1.15);
+        opacity: .9;
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: .6;
+    }
+}
+
+@keyframes gridDrift {
+    from {
+        background-position: 0 0, 0 0;
+    }
+
+    to {
+        background-position: 220px 220px, -220px -220px;
+    }
+}
+
+@keyframes particleLift {
+    from {
+        transform: translateY(0);
+        opacity: .5;
+    }
+
+    to {
+        transform: translateY(-120vh);
+        opacity: 0;
+    }
+}
+
+
+
+/* =========================================================
+   CONTACT — EXTREME SINGLE MEDIA
+========================================================= */
+@media (max-width: 768px) {
+
+    /* ===== SECTION ===== */
+    .contact {
+        padding: 7rem 6% 8rem;
+        perspective: none;
+    }
+
+    /* ===== HEADING ===== */
+    .contact .heading {
+        font-size: 3.2rem;
+        margin-bottom: 3.5rem;
+    }
+
+    /* ===== CONTAINER ===== */
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+
+    /* ===== INFO CARDS ===== */
+    .contact-info {
+        gap: 1.8rem;
+    }
+
+    .info-card {
+        padding: 2.2rem;
+        transform: none;
+    }
+
+    .info-card:hover {
+        transform: translateY(-6px) scale(1.01);
+    }
+
+    .info-card i {
+        font-size: 2.5rem;
+    }
+
+    .info-card h3 {
+        font-size: 1.7rem;
+    }
+
+    .info-card p,
+    .info-card a {
+        font-size: 1.35rem;
+    }
+
+    /* ===== FORM ===== */
+    .contact-form {
+        padding: 2.6rem;
+        border-radius: 2rem;
+    }
+
+    .field {
+        margin-bottom: 2.2rem;
+    }
+
+    .field input,
+    .field textarea {
+        font-size: 1.45rem;
+        padding: 1.4rem 1.2rem;
+    }
+
+    .field label {
+        font-size: 1.1rem;
+        top: -0.8rem;
+    }
+
+    /* ===== BUTTON ===== */
+    .btn-submit {
+        font-size: 1.5rem;
+        padding: 1.3rem;
+        border-radius: 3rem;
+    }
+
+    .btn-submit:hover {
+        transform: none;
+    }
+
+    .btn-submit:active {
+        transform: scale(0.97);
+    }
+
+    /* ===== BACKGROUND OPTIMIZATION ===== */
+    .contact-bg::before {
+        filter: blur(70px);
+        animation-duration: 38s;
+        opacity: 0.7;
+    }
+
+    .contact-bg::after {
+        background-size: 36px 36px;
+        animation-duration: 60s;
+        opacity: 0.45;
+    }
+
+    /* ===== PARTICLES ===== */
+    .contact-particles span {
+        width: 6px;
+        height: 6px;
+        opacity: 0.35;
+    }
+
+    /* ===== PERFORMANCE / TOUCH ===== */
+    .info-card,
+    .btn-submit {
+        -webkit-tap-highlight-color: transparent;
+    }
+}

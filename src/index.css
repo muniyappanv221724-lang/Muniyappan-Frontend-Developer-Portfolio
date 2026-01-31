@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #f9fafb, #eef2f7, #ffffff);
+  background-size: 300% 300%;
+  animation: bgFlow 14s ease infinite;
+  color: #1f2937;
+  overflow-x: hidden;
+}
+
+@keyframes bgFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+section {
+  min-height: 100vh;
+  padding: 10rem 9% 3rem;
+}

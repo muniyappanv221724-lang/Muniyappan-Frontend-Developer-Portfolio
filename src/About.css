@@ -1,0 +1,274 @@
+/* =========================
+   ABOUT SECTION LAYOUT
+========================= */
+.about {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 8rem;
+    row-gap: 5rem;
+
+    padding: 4rem 10% 7rem;
+    /* reduced top padding */
+    background-color: #f9f9f9;
+    overflow: hidden;
+}
+
+/* =========================
+   IMAGE WRAPPER (CENTERED)
+========================= */
+.about-media {
+    position: relative;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    margin: 0 auto;
+}
+
+/* =========================
+   BACKGROUND ANIMATION
+========================= */
+@keyframes slideGrow {
+    0% {
+        transform: translate(-50%, -50%) translateX(120%) scale(0.6);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateX(0) scale(0.85);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) translateX(0) scale(1.15);
+        opacity: 1;
+    }
+}
+
+/* =========================
+   TEXT REVEAL
+========================= */
+@keyframes textReveal {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   GLOW BACKGROUND
+========================= */
+.about-media::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    inset: -25%;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+            rgba(255, 255, 255, 0.95),
+            rgba(255, 255, 255, 0.6),
+            transparent 70%);
+    animation: slideGrow 4.5s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* =========================
+   LIGHT SWEEP
+========================= */
+.about-media::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    inset: -10%;
+    background: linear-gradient(120deg,
+            transparent,
+            rgba(255, 107, 107, 0.22),
+            transparent);
+    animation: slideGrow 7s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* =========================
+   IMAGE (NO EXTRA TOP SPACE)
+========================= */
+.about-media img {
+    width: 32rem;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+    margin-top: 0;
+    filter: drop-shadow(0 45px 60px rgba(0, 0, 0, 0.25));
+}
+
+/* =========================
+   STORY CONTENT
+========================= */
+.about-story {
+    max-width: 720px;
+    flex: 1;
+}
+
+/* =========================
+   STAGGERED REVEAL
+========================= */
+.about-story h2,
+.story-lines p,
+.story-more p,
+.story-btn {
+    opacity: 0;
+    transform: translateY(35px);
+    animation: textReveal 1s ease forwards;
+}
+
+.about.show h2 {
+    animation-delay: 0.2s;
+}
+
+.about.show .story-lines p {
+    animation-delay: 0.4s;
+}
+
+.about.show .story-more p {
+    animation-delay: 0.6s;
+}
+
+.about.show .story-btn {
+    animation-delay: 0.8s;
+}
+
+/* =========================
+   TEXT STYLES
+========================= */
+.about-story h2 {
+    font-size: 4.5rem;
+    margin-bottom: 2.5rem;
+    color: #333;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.about-story h2 span {
+    color: #ff6b6b;
+}
+
+.story-lines p,
+.story-more p {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 1.2rem;
+    text-align: justify;
+}
+
+/* =========================
+   EXPAND / COLLAPSE
+========================= */
+.story-more {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease;
+}
+
+.about.expanded .story-more {
+    max-height: 800px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.story-btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 1.3rem 3.2rem;
+    font-size: 1.5rem;
+    color: #ff6b6b;
+    background: transparent;
+    border: 2px solid #ff6b6b;
+    border-radius: 4rem;
+    font-weight: 600;
+    letter-spacing: 0.14rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.story-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 120%;
+    height: 100%;
+    background: linear-gradient(120deg,
+            transparent,
+            rgba(255, 107, 107, 0.6),
+            transparent);
+    transition: left 0.6s ease;
+}
+
+.story-btn:hover::after {
+    left: 120%;
+}
+
+.story-btn:hover {
+    transform: translateY(-4px);
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .about {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 4rem;
+        padding: 4rem 6%;
+    }
+
+    .about-media {
+        order: -1;
+    }
+
+    .about-media img {
+        width: 24rem;
+    }
+
+    .about-media::before {
+        inset: -18%;
+    }
+
+    .about-media::after {
+        inset: -12%;
+    }
+
+    .about-story {
+        max-width: 100%;
+    }
+
+    .about-story h2 {
+        font-size: 3rem;
+    }
+
+    .story-lines p,
+    .story-more p {
+        font-size: 1.6rem;
+        line-height: 1.7;
+    }
+
+    .story-btn {
+        margin: 2rem auto 0;
+    }
+}
