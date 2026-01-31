@@ -3,7 +3,7 @@
 A modern, responsive, and performance-optimized **personal portfolio website** built with **React and Vite**.  
 This project showcases my skills, projects, and experience using modern frontend development practices.
 
-🌐 **Live Demo:** https://your-portfolio-link.vercel.app  
+🌐 **Live Demo:** https://muniyappan-frontend-developer-portf-two.vercel.app/
 📁 **Source Code:** https://github.com/muniyappanv221724-lang/Muniyappan-Frontend-Developer-Portfolio
 
 ---
